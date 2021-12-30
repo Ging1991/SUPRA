@@ -17,5 +17,7 @@ public interface ConsultaOBD<Entidad> {
 	public Entidad selectByIDSegundo(String clave);
 
 	public Entidad selectByIDSegundo(Integer clave);
+	
+	public Integer selectCount();
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.caballero.infraestructura.general.Configuracion;
 
-public abstract class OBD <Entidad> {
+public abstract class OBD <Entidad> implements ConsultaOBD<Entidad>{
 	
 	public String tabla;
 	public String campos;
@@ -128,5 +128,29 @@ public abstract class OBD <Entidad> {
 		String condicion = campoClave + " = " + clave;
 		return selectUnicoByCondicion(condicion);
 	}
-	
+
+	public Integer selectCount() {
+		String sql = "select count(*) as cantidad from " + tabla;
+		Integer ret = 0;
+		try { 
+			Class.forName(driver); 
+			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD); 
+			Statement sentencia = conexion.createStatement ();
+			ResultSet resultados = sentencia.executeQuery(sql);			
+
+			if (resultados.next())
+				ret = resultados.getInt("cantidad");
+
+			resultados.close();
+			sentencia.close();
+			conexion.close();
+			
+		}catch(Exception e) {
+			System.out.println("       ERROR: " + sql);
+			e.printStackTrace();
+		}
+			
+		return ret;		
+	}
+
 }
