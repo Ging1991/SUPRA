@@ -21,7 +21,6 @@ public class UsuarioOBDPostgreSQL extends MiOBD<Usuario> implements UsuarioOBD {
 				resultados.getString("nombre"),
 				resultados.getString("clave")
 			);
-		
 	}
 
 	@Override

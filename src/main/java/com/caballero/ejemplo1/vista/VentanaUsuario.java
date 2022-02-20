@@ -1,6 +1,7 @@
 package com.caballero.ejemplo1.vista;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -26,6 +27,10 @@ public class VentanaUsuario extends Ventana {
 		setContentPane(panelPrincipal);		
 		panelPrincipal.add(panelTabla);
 		compactar();
+	}
+	
+	public void actualizar(List<Usuario> usuarios) {
+		tabla.recargar(usuarios);
 	}
 
 }
